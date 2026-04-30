@@ -54,4 +54,100 @@
 <script src="script.js"></script>
 </body>
 </html>
+body {
+  margin:0;
+  font-family: Arial;
+  background:#0f0f0f;
+  color:white;
+}
+
+header {
+  padding:20px;
+  background:black;
+  text-align:center;
+}
+
+.logo {
+  color:#ff2d55;
+  font-size:28px;
+  font-weight:bold;
+}
+
+.hero {
+  text-align:center;
+  padding:60px;
+}
+
+.products {
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  padding:20px;
+  flex-wrap:wrap;
+}
+
+.card {
+  background:#1a1a1a;
+  padding:20px;
+  width:200px;
+  border-radius:10px;
+  text-align:center;
+}
+
+button {
+  background:#ff2d55;
+  border:none;
+  padding:10px;
+  color:white;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+.cart {
+  text-align:center;
+  margin-top:40px;
+}
+
+.order-btn {
+  background:#25D366;
+  padding:15px;
+  border-radius:30px;
+  margin-top:10px;
+}
+let cart = [];
+let total = 0;
+
+function addToCart(name, price) {
+  cart.push({name, price});
+  total += price;
+  updateCart();
+}
+
+function updateCart() {
+  let list = document.getElementById("cartList");
+  list.innerHTML = "";
+
+  cart.forEach(item => {
+    let li = document.createElement("li");
+    li.textContent = item.name + " - " + item.price + " EGP";
+    list.appendChild(li);
+  });
+
+  document.getElementById("total").innerText = total;
+}
+
+function orderWhatsApp() {
+  let msg = "Order from FlexStore:%0A";
+
+  cart.forEach(item => {
+    msg += `- ${item.name} (${item.price} EGP)%0A`;
+  });
+
+  msg += `%0ATotal: ${total} EGP`;
+
+  let phone = "201080827373"; // رقمك
+  let url = `https://wa.me/${phone}?text=${msg}`;
+
+  window.open(url, "_blank");
+}
 
