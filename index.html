@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex Store - لوحة التحكم المبسطة</title>
+    <style>
+        :root { --gold: #d4af37; --black: #0a0a0a; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--black); color: #fff; margin: 0; padding: 20px; text-align: center; }
+        .container { max-width: 500px; margin: auto; border: 2px solid var(--gold); padding: 20px; border-radius: 20px; background: #111; }
+        .logo { width: 120px; margin-bottom: 10px; }
+        h1 { color: var(--gold); margin-bottom: 5px; outline: none; }
+        .editable { border: 1px dashed transparent; transition: 0.3s; padding: 5px; }
+        .editable:hover { border-color: var(--gold); cursor: pointer; }
+        img#product-img { width: 100%; border-radius: 15px; margin: 15px 0; cursor: pointer; }
+        select, .btn { width: 100%; padding: 15px; margin-top: 15px; border-radius: 8px; border: none; font-size: 16px; font-weight: bold; }
+        select { background: #222; color: #fff; border: 1px solid #444; }
+        .btn { background-color: var(--gold); color: #000; text-decoration: none; display: block; transition: 0.8s; cursor: pointer; }
+        .btn:hover { background-color: #fff; }
+        .admin-note { font-size: 12px; color: #777; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="https://i.ibb.co/vzY3Q3n/logo.png" alt="Flex Logo" class="logo"> <h1 contenteditable="true" id="store-name" class="editable">FLEX STORE</h1>
+        <p contenteditable="true" id="product-desc" class="editable">تيشرت أبيض أوفر سايز - قطن 100%</p>
+        <h2 contenteditable="true" id="price" class="editable">350 EGP</h2>
+
+        <img src="https://i.ibb.co/X7WqYVz/tshirt.png" id="product-img" alt="Product" onclick="changeImage()">
+        
+        <label for="size">اختر المقاس:</label>
+        <select id="size">
+            <option value="M">Medium (M)</option>
+            <option value="L">Large (L)</option>
+            <option value="XL">X-Large (XL)</option>
+            <option value="XXL">XX-Large (XXL)</option>
+        </select>
+
+        <button class="btn" onclick="orderWhatsApp()">اطلب الآن عبر واتساب</button>
+
+        <p class="admin-note">ملاحظة: يمكنك الضغط على أي نص لتعديله مباشرة (للمعاينة فقط)</p>
+    </div>
+
+    <script>
+        // دالة لإرسال الطلب للواتساب بالتفاصيل اللي اخترتها
+        function orderWhatsApp() {
+            const storeName = document.getElementById('store-name').innerText;
+            const product = document.getElementById('product-desc').innerText;
+            const price = document.getElementById('price').innerText;
+            const size = document.getElementById('size').value;
+            const phone = "201080827373"; // حط رقمك هنا
+
+            const message = `يا أحمد، محتاج أطلب من ${storeName}:%0Aالمنتج: ${product}%0Aالمقاس: ${size}%0Aالسعر: ${price}`;
+            window.location.href = `https://wa.me/${phone}?text=${message}`;
+        }
+
+        // دالة بسيطة لتغيير الصورة (تجريبية)
+        function changeImage() {
+            const newUrl = prompt("أدخل رابط صورة المنتج الجديدة:");
+            if (newUrl) {
+                document.getElementById('product-img').src = newUrl;
+            }
+        }
+    </script>
+</body>
+</html>
