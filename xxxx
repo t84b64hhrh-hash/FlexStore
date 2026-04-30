@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FlexStore</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <div class="logo">FlexStore</div>
+</header>
+
+<section class="hero">
+  <h1>FLEX YOUR STYLE</h1>
+  <p>Streetwear made for you 🔥</p>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products">
+
+  <div class="card">
+    <h3>Black T-Shirt</h3>
+    <p>250 EGP</p>
+    <button onclick="addToCart('Black T-Shirt',250)">Add</button>
+  </div>
+
+  <div class="card">
+    <h3>White Hoodie</h3>
+    <p>400 EGP</p>
+    <button onclick="addToCart('White Hoodie',400)">Add</button>
+  </div>
+
+  <div class="card">
+    <h3>Street Pants</h3>
+    <p>350 EGP</p>
+    <button onclick="addToCart('Street Pants',350)">Add</button>
+  </div>
+
+</section>
+
+<!-- CART -->
+<section class="cart">
+  <h2>🛒 Your Cart</h2>
+  <ul id="cartList"></ul>
+  <h3>Total: <span id="total">0</span> EGP</h3>
+
+  <button onclick="orderWhatsApp()" class="order-btn">
+    Order via WhatsApp 💬
+  </button>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
