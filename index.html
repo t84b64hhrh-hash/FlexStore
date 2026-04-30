@@ -3,65 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flex Store - لوحة التحكم المبسطة</title>
+    <title>FlexStore | Official Store</title>
     <style>
-        :root { --gold: #d4af37; --black: #0a0a0a; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--black); color: #fff; margin: 0; padding: 20px; text-align: center; }
-        .container { max-width: 500px; margin: auto; border: 2px solid var(--gold); padding: 20px; border-radius: 20px; background: #111; }
-        .logo { width: 120px; margin-bottom: 10px; }
-        h1 { color: var(--gold); margin-bottom: 5px; outline: none; }
-        .editable { border: 1px dashed transparent; transition: 0.3s; padding: 5px; }
-        .editable:hover { border-color: var(--gold); cursor: pointer; }
-        img#product-img { width: 100%; border-radius: 15px; margin: 15px 0; cursor: pointer; }
-        select, .btn { width: 100%; padding: 15px; margin-top: 15px; border-radius: 8px; border: none; font-size: 16px; font-weight: bold; }
-        select { background: #222; color: #fff; border: 1px solid #444; }
-        .btn { background-color: var(--gold); color: #000; text-decoration: none; display: block; transition: 0.8s; cursor: pointer; }
-        .btn:hover { background-color: #fff; }
-        .admin-note { font-size: 12px; color: #777; margin-top: 20px; }
+        :root {
+            --main-bg: #000000;
+            --card-bg: #111111;
+            --accent: #d4af37; /* اللون الذهبي */
+            --text: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--main-bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            letter-spacing: 4px;
+            color: var(--accent);
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .product-card {
+            width: 90%;
+            max-width: 400px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #222;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+        }
+
+        .product-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .details {
+            padding: 20px;
+            text-align: right;
+        }
+
+        .price {
+            font-size: 1.6rem;
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            margin: 0 0 10px 0;
+            line-height: 1.5;
+        }
+
+        .description {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        .size-selector {
+            width: 100%;
+            padding: 12px;
+            background: #222;
+            color: white;
+            border: 1px solid #333;
+            border-radius: 8px;
+            margin: 10px 0 20px 0;
+            font-size: 1rem;
+        }
+
+        .order-btn {
+            display: block;
+            background: var(--accent);
+            color: black;
+            text-align: center;
+            padding: 16px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: 0.2s;
+        }
+
+        .order-btn:active {
+            transform: scale(0.97);
+        }
+
+        .footer {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #555;
+            padding-bottom: 30px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <img src="https://i.ibb.co/vzY3Q3n/logo.png" alt="Flex Logo" class="logo"> <h1 contenteditable="true" id="store-name" class="editable">FLEX STORE</h1>
-        <p contenteditable="true" id="product-desc" class="editable">تيشرت أبيض أوفر سايز - قطن 100%</p>
-        <h2 contenteditable="true" id="price" class="editable">350 EGP</h2>
+    <div class="header">
+        <h1>FLEX STORE</h1>
+        <p style="color: #666; margin-top: 5px; letter-spacing: 1px;">PREMIUM OVERSIZE</p>
+    </div>
 
-        <img src="https://i.ibb.co/X7WqYVz/tshirt.png" id="product-img" alt="Product" onclick="changeImage()">
+    <div class="product-card">
+        <img src="https://raw.githubusercontent.com/t84b64hhrh-hash/FlexStore/main/image.png" alt="Flex Oversize White" class="product-img">
         
-        <label for="size">اختر المقاس:</label>
-        <select id="size">
-            <option value="M">Medium (M)</option>
-            <option value="L">Large (L)</option>
-            <option value="XL">X-Large (XL)</option>
-            <option value="XXL">XX-Large (XXL)</option>
-        </select>
+        <div class="details">
+            <div class="price">350 EGP</div>
+            <h2 class="product-title" id="p-title">تيشرت FLEX الأبيض الأساسي - Oversize</h2>
+            <p class="description">خامة قطن 100% ثقيلة تعيش معاك، تصميم مريح وأنيق يناسب ستايلك.</p>
+            
+            <label style="font-size: 0.85rem; color: var(--accent);">اختر مقاسك:</label>
+            <select class="size-selector" id="p-size">
+                <option value="M">Medium (M)</option>
+                <option value="L">Large (L)</option>
+                <option value="XL">X-Large (XL)</option>
+                <option value="XXL">XX-Large (XXL)</option>
+            </select>
 
-        <button class="btn" onclick="orderWhatsApp()">اطلب الآن عبر واتساب</button>
+            <a href="#" class="order-btn" onclick="sendOrder()">اطلب الآن عبر واتساب</a>
+        </div>
+    </div>
 
-        <p class="admin-note">ملاحظة: يمكنك الضغط على أي نص لتعديله مباشرة (للمعاينة فقط)</p>
+    <div class="footer">
+        &copy; 2026 FLEX STORE - MANSOURA
     </div>
 
     <script>
-        // دالة لإرسال الطلب للواتساب بالتفاصيل اللي اخترتها
-        function orderWhatsApp() {
-            const storeName = document.getElementById('store-name').innerText;
-            const product = document.getElementById('product-desc').innerText;
-            const price = document.getElementById('price').innerText;
-            const size = document.getElementById('size').value;
-            const phone = "201080827373"; // حط رقمك هنا
-
-            const message = `يا أحمد، محتاج أطلب من ${storeName}:%0Aالمنتج: ${product}%0Aالمقاس: ${size}%0Aالسعر: ${price}`;
-            window.location.href = `https://wa.me/${phone}?text=${message}`;
-        }
-
-        // دالة بسيطة لتغيير الصورة (تجريبية)
-        function changeImage() {
-            const newUrl = prompt("أدخل رابط صورة المنتج الجديدة:");
-            if (newUrl) {
-                document.getElementById('product-img').src = newUrl;
-            }
+        function sendOrder() {
+            const myNumber = "201080827373"; 
+            
+            const title = document.getElementById('p-title').innerText;
+            const size = document.getElementById('p-size').value;
+            
+            const message = `أهلاً Flex Store، محتاج أطلب:%0A📌 ${title}%0A📏 المقاس: ${size}%0A💰 السعر: 350 EGP`;
+            
+            window.location.href = `https://wa.me/${myNumber}?text=${message}`;
         }
     </script>
+
 </body>
 </html>
+
